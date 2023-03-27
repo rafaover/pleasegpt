@@ -1,3 +1,4 @@
+# rubocop:disable Style/StringLiterals
 Gem::Specification.new do |spec|
   spec.name          = "pleasegpt"
   spec.version       = "0.1.0"
@@ -15,3 +16,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "dotenv"
   spec.add_runtime_dependency "highline"
 end
+# rubocop:enable Style/StringLiterals
