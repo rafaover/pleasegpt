@@ -1,18 +1,13 @@
 module PleaseGPT
   class CLI
     def run
-      # while true
-      #   print "pleasegpt> "
-      #   input = gets.chomp
-      #   if input.empty?
-      #     break
-      #   end
-      #   puts pleasegpt(input)
-      # end
-      if true
         print "pleasegpt> "
         input = gets.chomp
-        input.empty? ? break : puts pleasegpt(input)
+        input.empty?
+          puts "Please enter a valid command"
+          run
+        end
+        puts pleasegpt(input)
       end
     end
 
