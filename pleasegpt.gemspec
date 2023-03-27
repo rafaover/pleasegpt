@@ -13,4 +13,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "openai"
   spec.add_dependency "dotenv"
+  spec.add_runtime_dependency "highline"
 end
