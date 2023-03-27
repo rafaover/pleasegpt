@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Rafael Moreira"]
   spec.email         = ["rafamsilva@gmail.com"]
   spec.summary       = "A command-line tool for generating responses or commands using the OpenAI API"
-  spec.homepage      = "https://github.com/yourusername/pleasegpt"
+  spec.homepage      = "https://github.com/rafaover/pleasegpt"
   spec.license       = "MIT"
 
   spec.files         = Dir.glob("{lib}/**/*")
