@@ -15,5 +15,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "openai"
   spec.add_dependency "dotenv"
   spec.add_runtime_dependency "highline"
+  spec.add_runtime_dependency 'colorize', '~> 0.8.1'
 end
 # rubocop:enable Style/StringLiterals

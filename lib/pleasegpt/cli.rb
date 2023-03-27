@@ -1,6 +1,7 @@
 # rubocop:disable Metrics/MethodLength
 require 'openai'
 require 'highline/import'
+require 'colorize'
 
 module PleaseGPT
   # Gem command-line tool interface
@@ -46,7 +47,7 @@ module PleaseGPT
         api_key: api_key
       )
       Error.check_response(response)
-      response.choices[0].text.strip
+      response.choices[0].text.strip.colorize(:blue)
     end
 
     private_class_method def self.api_key
