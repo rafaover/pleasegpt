@@ -1,14 +1,13 @@
 module PleaseGPT
   class CLI
     def run
-        print "pleasegpt> "
-        input = gets.chomp
-        input.empty?
-          puts "Please enter a valid command"
-          run
-        end
-        puts pleasegpt(input)
+      print 'pleasegpt> '
+      input = gets.chomp
+      if input.empty?
+        puts 'Please enter a valid command'
+        run
       end
+      puts pleasegpt(input)
     end
 
     private
@@ -23,7 +22,7 @@ module PleaseGPT
         stop: "\n",
         api_key: ENV['OPENAI_API_KEY']
       )
-      return response.choices[0].text.strip
+      response.choices[0].text.strip
     end
   end
 end
