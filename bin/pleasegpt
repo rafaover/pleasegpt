@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'pleasegpt'
+
+PleaseGPT::CLI.new.run
