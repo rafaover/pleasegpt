@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
 require 'pleasegpt'
+require 'dotenv/load'
 
 PleaseGPT::CLI.new.run
