@@ -25,7 +25,7 @@ module PleaseGPT
         max_tokens: 2048,
         temperature: 0.5,
         n: 1,
-        stop: "\n"
+        stop: "\n",
         api_key: ENV['OPENAI_API_KEY']
       )
       return response.choices[0].text.strip
