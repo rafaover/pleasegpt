@@ -3,12 +3,12 @@ require 'pleasegpt'
 module PleaseGPT
   # Gem command-line tool interface
   class CLI
-    def run
+    def self.start(args)
       print 'pleasegpt> '
       input = gets.chomp
       if input.empty?
         puts 'Please enter a valid command'
-        run
+        start(args)
       end
       puts Api.generate_text(input)
     end

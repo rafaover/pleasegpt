@@ -4,4 +4,4 @@
 require 'pleasegpt'
 require 'dotenv/load'
 
-PleaseGPT::CLI.new.run
+PleaseGPT::CLI.new.start
