@@ -8,14 +8,16 @@ module PleaseGPT
   # Module for OpenAI API requests
   module Api
     def self.generate_text(input)
-      response = OpenAI::Completion.create(
-        engine: 'davinci',
+      client = OpenAI::Client.new(access_token: api_key)
+      response = client.completions(
+        parameters: {
+        model: 'text-davinci-003',
         prompt: "#{input}\n",
-        max_tokens: 2048,
+        max_tokens: 300,
         temperature: 0.5,
         n: 1,
-        stop: "\n",
-        api_key: api_key
+        stop: "\n"
+        }
       )
       Error.check_response(response)
       response.choices[0].text.strip.colorize(:blue)
