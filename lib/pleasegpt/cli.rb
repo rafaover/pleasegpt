@@ -1,6 +1,3 @@
-require 'openai'
-require 'highline/import'
-require 'colorize'
 require 'pleasegpt'
 
 module PleaseGPT
