@@ -12,9 +12,10 @@ Gem::Specification.new do |spec|
   spec.executables   = ["pleasegpt"]
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "openai"
-  spec.add_dependency "dotenv"
-  spec.add_runtime_dependency "highline"
+  spec.add_dependency 'ruby-openai'
+  spec.add_dependency 'openai', '~> 0.3.0'
+  spec.add_dependency 'dotenv', '~> 2.8', '>= 2.8.1'
+  spec.add_runtime_dependency 'highline', '~> 1.7', '>= 1.7.8'
   spec.add_runtime_dependency 'colorize', '~> 0.8.1'
 end
 # rubocop:enable Style/StringLiterals
