@@ -2,4 +2,4 @@
 
 ## In Progress
 
-An AI helper used in command line that helps you with terminal commands or explains how to use a asked command.
+A Ruby Gem AI helper used in command line that replies to you command lines asked or executes after given the answer.
