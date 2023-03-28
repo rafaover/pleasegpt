@@ -9,23 +9,21 @@ module PleaseGPT
 
   # Module for OpenAI API requests
   module Api
-    private_class_method def self.api_key
+    def self.api_key
       @api_key ||= ENV['OPENAI_API_KEY'] || begin
         ask('Please enter your OpenAI API key:  ') { |q| q.echo = '*' }
       end
     end
 
     def self.generate_text(input)
-      client = OpenAI::Client.new(access_token: api_key)
+      client = OpenAI::Client.new(api_key: Api.api_key)
       response = client.completions(
-        parameters: {
-          model: 'text-davinci-003',
-          prompt: "#{input}\n",
-          max_tokens: 300,
-          temperature: 0.5,
-          n: 1,
-          stop: "\n"
-        }
+        engine: 'text-davinci-003',
+        prompt: "#{input}\n",
+        max_tokens: 300,
+        temperature: 0.5,
+        n: 1,
+        stop: "\n"
       )
       Error.check_response(response)
       response.choices[0].text.strip.colorize(:blue)
@@ -33,7 +31,7 @@ module PleaseGPT
   end
 
   # Handling errors from OpenAI API requests and responses
-  module Error
+  class Error < StandardError
     def self.check_response(response)
       if response.choices.empty?
         raise PleaseGPT::Error, 'OpenAI API request returned empty response'
