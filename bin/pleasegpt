@@ -3,5 +3,6 @@
 
 require 'pleasegpt'
 require 'dotenv/load'
+require 'pleasegpt/cli'
 
-PleaseGPT::CLI.new.start
+PleaseGPT::CLI.new.start(ARGV)

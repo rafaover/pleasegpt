@@ -2,6 +2,7 @@
 require 'openai'
 require 'highline/import'
 require 'colorize'
+require 'dotenv/load'
 
 # Module for PleaseGPT gem
 module PleaseGPT
@@ -10,13 +11,13 @@ module PleaseGPT
   # Module for OpenAI API requests
   module Api
     def self.api_key
-      @api_key ||= ENV['OPENAI_API_KEY'] || begin
+      ENV['OPENAI_API_KEY'] || begin
         ask('Please enter your OpenAI API key:  ') { |q| q.echo = '*' }
       end
     end
 
-    def self.generate_text(input)
-      client = OpenAI::Client.new(api_key: Api.api_key)
+    def self.generate_text(input, number)
+      client = OpenAI::Client.new(api_key: number)
       response = client.completions(
         engine: 'text-davinci-003',
         prompt: "#{input}\n",
