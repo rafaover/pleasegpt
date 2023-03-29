@@ -18,14 +18,27 @@ module PleaseGPT
       if key.nil? || key.empty?
         puts "API Key cannot be empty. Please try again."
       else
-        gem_dir = Gem::Specification.find_by_name('pleasegpt').gem_dir
-        file_path = File.join(gem_dir, 'lib', '.openai')
-        File.write(file_path, "OPENAI_API_KEY=#{key}")
+        save_api_key(key)
         puts 'API key saved to file'
-        ENV['OPENAI_API_KEY'] = key
+        set_env_var('OPENAI_API_KEY', key)
         Dotenv.load('.openai')
       end
     end
+
+    def self.save_api_key(key)
+      File.write(File.join(gem_lib_dir, '.openai'), "OPENAI_API_KEY=#{key}")
+    end
+
+    def self.set_env_var(key, value)
+      File.open(File.join(gem_lib_dir, '.openai'), 'a') do |f|
+        f.puts "#{key}=#{value}"
+      end
+    end
+
+    def self.gem_lib_dir
+      File.expand_path('../../lib', __FILE__)
+    end
+
 
     def self.generate_text(input)
       # raise "OPENAI_API_KEY not set" unless ENV['OPENAI_API_KEY']
