@@ -1,9 +1,6 @@
 require 'spec_helper'
 require 'pleasegpt/cli'
 
-require 'spec_helper'
-require 'pleasegpt/cli'
-
 RSpec.describe PleaseGPT::CLI do
   describe "#start" do
     context "when given a valid command" do
