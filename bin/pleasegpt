@@ -6,4 +6,34 @@ require 'dotenv/load'
 require 'pleasegpt/cli'
 require 'openai'
 
-PleaseGPT::CLI.new.start(ARGV)
+module PleaseGPT
+  class CLI
+    def save_api_key
+      if Api.api_key
+        File.write('.openai', Api.api_key)
+        puts 'OpenAI API key saved to .openai file'
+      else
+        puts 'OpenAI API key not found in environment variables'
+      end
+    end
+
+    def load_api_key
+      if File.exist?('.openai')
+        key = File.read('.openai').strip
+        ENV['OPENAI_API_KEY'] = key
+        puts 'OpenAI API key loaded from .openai file'
+      else
+        puts 'No .openai file found'
+      end
+    end
+  end
+end
+
+case ARGV[0]
+when 'save-key'
+  PleaseGPT::CLI.new.save_api_key
+when 'load-key'
+  PleaseGPT::CLI.new.load_api_key
+else
+  PleaseGPT::CLI.new.start(ARGV)
+end
