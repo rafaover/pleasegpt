@@ -10,9 +10,7 @@ module PleaseGPT
   # Module for OpenAI API requests
   module Api
     def self.api_key
-      @api_key = ENV['OPENAI_API_KEY'] || begin
-        ask('Please enter your OpenAI API key:  ') { |q| q.echo = '*' }
-      end
+      @api_key = ENV['OPENAI_API_KEY']
     end
 
     def self.generate_text(input)
