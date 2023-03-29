@@ -22,6 +22,7 @@ module PleaseGPT
         puts 'API key saved to file'
         ENV['OPENAI_API_KEY'] = key
         Dotenv.load('.openai')
+        puts "OPENAI_API_KEY=#{ENV['OPENAI_API_KEY']}"
       end
     end
 
