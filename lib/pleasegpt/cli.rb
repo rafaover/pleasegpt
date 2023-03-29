@@ -1,5 +1,6 @@
 require 'pleasegpt'
 require 'colorize'
+require 'dotenv/load'
 
 module PleaseGPT
   class CLI
