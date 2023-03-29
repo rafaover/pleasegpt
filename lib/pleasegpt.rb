@@ -17,9 +17,9 @@ module PleaseGPT
     end
 
     def self.generate_text(input, number)
-      client = OpenAI::Client.new(api_key: number)
+      client = OpenAI::Client.new(access_token: number)
       response = client.completions(
-        engine: 'text-davinci-003',
+        engine: 'text-davinci-001',
         prompt: "#{input}\n",
         max_tokens: 300,
         temperature: 0.5,
@@ -27,7 +27,7 @@ module PleaseGPT
         stop: "\n"
       )
       Error.check_response(response)
-      response.choices[0].text.strip.colorize(:blue)
+      response['choices'][0]['text'].strip.colorize(:blue)
     end
   end
 
