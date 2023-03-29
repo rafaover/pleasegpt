@@ -24,15 +24,16 @@ module PleaseGPT
     end
 
     def self.generate_text(input)
-      client = OpenAI::Client.new(api_key: PleaseGPT::Api.api_key)
+      client = OpenAI::Client.new(api_key: Api.api_key)
       response = client.completions(
         engine: 'text-davinci-003',
         prompt: "#{input}",
         max_tokens: 300,
-        temperature: 0,
+        temperature: 0.5,
         n: 1,
         stop: '.'
       )
+      p response
       Error.check_response(response)
     end
   end
