@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/rafaover/pleasegpt"
   spec.license       = "MIT"
 
-  spec.files         = Dir.glob("{lib}/**/*")
+  spec.files         = Dir.glob("{bin,lib,spec}/**/*")
   spec.executables   = ["pleasegpt"]
   spec.require_paths = ["lib"]
 
