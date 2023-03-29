@@ -1,4 +1,5 @@
 require 'pleasegpt'
+require 'colorize'
 
 module PleaseGPT
   # Gem command-line tool interface
