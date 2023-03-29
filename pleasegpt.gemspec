@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'ruby-openai', '~> 3.7'
+  spec.add_dependency 'openai', '~> 0.3.0'
   spec.add_dependency 'dotenv', '~> 2.8', '>= 2.8.1'
   spec.add_runtime_dependency 'highline', '~> 2.1'
   spec.add_runtime_dependency 'colorize', '~> 0.8.1'
