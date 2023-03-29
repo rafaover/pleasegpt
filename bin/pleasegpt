@@ -2,48 +2,24 @@
 # frozen_string_literal: true
 
 require 'pleasegpt'
-require 'dotenv/load'
 require 'pleasegpt/cli'
 require 'openai'
-
-module PleaseGPT
-  class CLI
-    def save_api_key
-      if Api.api_key
-        File.write('.openai', Api.api_key)
-        puts 'OpenAI API key saved to .openai file'
-      else
-        puts 'OpenAI API key not found in environment variables'
-      end
-    end
-
-    def load_api_key
-      if File.exist?('.openai')
-        key = File.read('.openai').strip
-        ENV['OPENAI_API_KEY'] = key
-        puts 'OpenAI API key loaded from .openai file'
-      else
-        puts 'No .openai file found'
-      end
-    end
-
-    def start(args)
-      load_api_key
-      if args.empty?
-        puts 'Please enter a valid command'
-      else
-        input = args.join(' ')
-        puts Api.generate_text(input).to_s.colorize(:blue)
-      end
-    end
-  end
-end
 
 case ARGV[0]
 when 'save-key'
   PleaseGPT::CLI.new.save_api_key
 when 'load-key'
   PleaseGPT::CLI.new.load_api_key
+when 'help'
+  puts <<-HELP
+PleaseGPT - A command-line tool for OpenAI's GPT-3 API
+
+Usage:
+  pleasegpt [input]           # Generate text based on input
+  pleasegpt save-key          # Save OpenAI API key to .env file
+  pleasegpt load-key          # Load OpenAI API key from .env file
+  pleasegpt help              # Show this help message
+  HELP
 else
   PleaseGPT::CLI.new.start(ARGV)
 end
