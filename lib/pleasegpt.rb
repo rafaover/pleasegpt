@@ -1,6 +1,7 @@
 require 'openai'
 require 'highline/import'
 require 'dotenv/load'
+require 'dotenv'
 
 # Main module for PleaseGPT gem
 module PleaseGPT
@@ -20,11 +21,13 @@ module PleaseGPT
         File.write('lib/.openai', "OPENAI_API_KEY=#{key}")
         puts 'API key saved to file'
         ENV['OPENAI_API_KEY'] = key
+        Dotenv.load('.openai')
       end
     end
 
     def self.generate_text(input)
-      client = OpenAI::Client.new(api_key: Api.api_key)
+      # raise "OPENAI_API_KEY not set" unless ENV['OPENAI_API_KEY']
+      client = OpenAI::Client.new(api_key: PleaseGPT::Api.api_key)
       response = client.completions(
         engine: 'text-davinci-003',
         prompt: "#{input}",
@@ -33,7 +36,6 @@ module PleaseGPT
         n: 1,
         stop: '.'
       )
-      p response
       Error.check_response(response)
     end
   end
