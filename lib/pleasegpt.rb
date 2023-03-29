@@ -2,20 +2,25 @@ require 'openai'
 require 'highline/import'
 require 'dotenv/load'
 
-# Main module for PleaseGPT
+# Main module for PleaseGPT gem
 module PleaseGPT
   autoload :CLI, 'pleasegpt/cli'
 
-  # OpenAI API module requests
+  # API class for OpenAI API requests and responses
   module Api
     def self.api_key
       @api_key ||= ENV['OPENAI_API_KEY']
     end
 
     def self.load_api_key
-      key = ask("Please enter your OpenAI API key:  ") { |q| q.echo = false }
-      File.write('.openai', "OPENAI_API_KEY=#{key}")
-      Dotenv.load
+      key = ask("Please paste your OpenAI API key:  ")
+      if key.nil? || key.empty?
+        puts "API Key cannot be empty. Please try again."
+      else
+        File.write('.openai', key)
+        puts 'API key saved to file'
+        ENV['OPENAI_API_KEY'] = key
+      end
     end
 
     def self.generate_text(input)
@@ -29,17 +34,18 @@ module PleaseGPT
         stop: '.'
       )
       Error.check_response(response)
-      response.choices[0].text.strip
     end
   end
 
-  # Error class for OpenAI API requests
+  # Error class for OpenAI API requests and response errors
   class Error < StandardError
     def self.check_response(response)
       if response.choices.empty?
-        raise PleaseGPT::Error, 'OpenAI API request returned empty response'
+        raise PleaseGPT::Error, 'Request returned empty response'
       elsif response.choices[0].text.nil?
-        raise PleaseGPT::Error, 'OpenAI API request returned nil text'
+        raise PleaseGPT::Error, 'Request returned nil text'
+      else
+        response.choices[0].text.strip
       end
     end
   end
