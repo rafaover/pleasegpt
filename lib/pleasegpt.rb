@@ -1,7 +1,6 @@
 # rubocop:disable Metrics/MethodLength
 require 'openai'
 require 'highline/import'
-require 'colorize'
 require 'dotenv/load'
 
 # Module for PleaseGPT gem
@@ -16,18 +15,18 @@ module PleaseGPT
       end
     end
 
-    def self.generate_text(input, number)
-      client = OpenAI::Client.new(access_token: number)
+    def self.generate_text(input)
+      client = OpenAI::Client.new(api_key: Api.api_key)
       response = client.completions(
-        engine: 'text-davinci-001',
-        prompt: "#{input}\n",
+        engine: 'text-davinci-003',
+        prompt: "#{input}",
         max_tokens: 300,
-        temperature: 0.5,
+        temperature: 0,
         n: 1,
-        stop: "\n"
+        stop: '.'
       )
       Error.check_response(response)
-      response['choices'][0]['text'].strip.colorize(:blue)
+      response.choices[0].text.strip
     end
   end
 
