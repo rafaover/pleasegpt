@@ -14,7 +14,7 @@ module PleaseGPT
 
     def self.load_api_key
       key = ask("Please enter your OpenAI API key:  ") { |q| q.echo = false }
-      File.write('.env', "OPENAI_API_KEY=#{key}")
+      File.write('.openai', "OPENAI_API_KEY=#{key}")
       Dotenv.load
     end
 
