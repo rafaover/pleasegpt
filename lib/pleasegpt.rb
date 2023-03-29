@@ -14,31 +14,34 @@ module PleaseGPT
     end
 
     def self.load_api_key
-      key = ask("Please paste your OpenAI API key:  ")
+      key = ask('Please paste your OpenAI API key:  ')
       if key.nil? || key.empty?
-        puts "API Key cannot be empty. Please try again."
+        puts 'API Key cannot be empty. Please try again.'
       else
         save_api_key(key)
         puts 'API key saved to file'
-        set_env_var('OPENAI_API_KEY', key)
+        env_variable(key)
         Dotenv.load('.openai')
       end
     end
 
-    def self.save_api_key(key)
-      File.write(File.join(gem_lib_dir, '.openai'), "OPENAI_API_KEY=#{key}")
+    def self.join_lib_dir_with_file
+      File.join(gem_lib_dir, '.openai')
     end
 
-    def self.set_env_var(key, value)
-      File.open(File.join(gem_lib_dir, '.openai'), 'a') do |f|
-        f.puts "#{key}=#{value}"
+    def self.save_api_key(key)
+      File.write(join_lib_dir_with_file, "OPENAI_API_KEY=#{key}")
+    end
+
+    def self.env_variable(key)
+      File.open(join_lib_dir_with_file, 'w') do |f|
+        f.puts "OPENAI_API_KEY=#{key}"
       end
     end
 
     def self.gem_lib_dir
-      File.expand_path('../../lib', __FILE__)
+      File.expand_path('../../lib', __dir__)
     end
-
 
     def self.generate_text(input)
       # raise "OPENAI_API_KEY not set" unless ENV['OPENAI_API_KEY']
