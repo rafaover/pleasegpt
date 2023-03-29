@@ -1,16 +1,21 @@
-# rubocop:disable Metrics/MethodLength
 require 'openai'
 require 'highline/import'
 require 'dotenv/load'
 
-# Module for PleaseGPT gem
+# Main module for PleaseGPT
 module PleaseGPT
   autoload :CLI, 'pleasegpt/cli'
 
-  # Module for OpenAI API requests
+  # OpenAI API module requests
   module Api
     def self.api_key
-      @api_key = ENV['OPENAI_API_KEY']
+      @api_key ||= ENV['OPENAI_API_KEY']
+    end
+
+    def self.load_api_key
+      key = ask("Please enter your OpenAI API key:  ") { |q| q.echo = false }
+      File.write('.env', "OPENAI_API_KEY=#{key}")
+      Dotenv.load
     end
 
     def self.generate_text(input)
@@ -28,7 +33,7 @@ module PleaseGPT
     end
   end
 
-  # Handling errors from OpenAI API requests and responses
+  # Error class for OpenAI API requests
   class Error < StandardError
     def self.check_response(response)
       if response.choices.empty?
@@ -39,4 +44,3 @@ module PleaseGPT
     end
   end
 end
-# rubocop:enable Metrics/MethodLength
