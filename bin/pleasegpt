@@ -26,6 +26,16 @@ module PleaseGPT
         puts 'No .openai file found'
       end
     end
+
+    def start(args)
+      load_api_key
+      if args.empty?
+        puts 'Please enter a valid command'
+      else
+        input = args.join(' ')
+        puts Api.generate_text(input).to_s.colorize(:blue)
+      end
+    end
   end
 end
 
