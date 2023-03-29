@@ -4,5 +4,6 @@
 require 'pleasegpt'
 require 'dotenv/load'
 require 'pleasegpt/cli'
+require 'openai'
 
 PleaseGPT::CLI.new.start(ARGV)
