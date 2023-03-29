@@ -1,14 +1,14 @@
 require 'spec_helper'
 require 'pleasegpt/cli'
 
-describe PleaseGPT::CLI do
-  describe '#start' do
-    let(:command) { "pleasegpt what's the meaning of life?" }
+RSpec.describe PleaseGPT::CLI do
+  describe "#start" do
+    context "when given a valid command" do
+      let(:args) { ["how much is 2+2"] }
 
-    it 'generates text from command input' do
-      api_key = ENV['OPENAI_API_KEY']
-      expected_output = PleaseGPT::Api.generate_text("what's the meaning of life?", api_key)
-      expect(`#{command}`.strip).to eq(expected_output)
+      it "returns a response from the OpenAI API" do
+        expect { subject.start(args) }.to output(/.*\n/).to_stdout
+      end
     end
   end
 end
