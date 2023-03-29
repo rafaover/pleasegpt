@@ -17,7 +17,7 @@ module PleaseGPT
       if key.nil? || key.empty?
         puts "API Key cannot be empty. Please try again."
       else
-        File.write('.openai', key)
+        File.write('lib/.openai', "OPENAI_API_KEY=#{key}")
         puts 'API key saved to file'
         ENV['OPENAI_API_KEY'] = key
       end
