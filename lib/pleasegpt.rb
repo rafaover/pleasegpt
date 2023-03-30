@@ -9,10 +9,6 @@ module PleaseGPT
 
   # API class for OpenAI API requests and responses
   module Api
-    def self.api_key
-      @api_key ||= ENV['OPENAI_API_KEY']
-    end
-
     def self.load_api_key
       key = ask('Please paste your OpenAI API key:  ')
       if key.nil? || key.empty?
@@ -23,6 +19,10 @@ module PleaseGPT
         env_variable(key)
         Dotenv.load('.openai')
       end
+    end
+
+    def self.gem_lib_dir
+      File.expand_path(__dir__)
     end
 
     def self.join_lib_dir_with_file
@@ -39,13 +39,9 @@ module PleaseGPT
       end
     end
 
-    def self.gem_lib_dir
-      File.expand_path('../../lib', __dir__)
-    end
-
     def self.generate_text(input)
       # raise "OPENAI_API_KEY not set" unless ENV['OPENAI_API_KEY']
-      client = OpenAI::Client.new(api_key: PleaseGPT::Api.api_key)
+      client = OpenAI::Client.new(api_key: ENV['OPENAI_API_KEY'])
       response = client.completions(
         engine: 'text-davinci-003',
         prompt: "#{input}",
