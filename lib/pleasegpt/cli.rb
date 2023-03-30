@@ -9,7 +9,7 @@ module PleaseGPT
         puts '>>> Please enter a valid command <<<'
       else
         input = args.join(' ')
-        puts Api.generate_text(input).to_s.colorize(:blue)
+        puts Api.generate_text(input).to_s.colorize(:green)
       end
     end
   end
