@@ -21,12 +21,12 @@ module PleaseGPT
       end
     end
 
-    def self.gem_lib_dir
-      File.expand_path(__dir__)
+    def self.gem_dir
+      File.expand_path('..', __dir__)
     end
 
     def self.join_lib_dir_with_file
-      File.join(gem_lib_dir, '.openai')
+      File.join(gem_dir, 'lib', '.openai')
     end
 
     def self.save_api_key(key)
@@ -40,7 +40,7 @@ module PleaseGPT
     end
 
     def self.openai_client
-      Dotenv.load('lib/.openai')
+      Dotenv.load(join_lib_dir_with_file)
       raise 'OPENAI_API_KEY not set' unless ENV['OPENAI_API_KEY']
 
       OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
