@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+# rubocop:disable Metrics/MethodLength
+
 require_relative 'pleasegpt/version'
 require_relative 'pleasegpt/gems'
 
@@ -71,3 +74,5 @@ module PleaseGPT
     end
   end
 end
+
+# rubocop:enable Metrics/MethodLength

@@ -1,4 +1,5 @@
 /lib/.openai
+/.bundle/
 
 .DS_Store
 doc

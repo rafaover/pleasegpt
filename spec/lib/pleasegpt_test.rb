@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'pleasegpt'
+
+# rubocop:disable Metrics/BlockLength
 
 RSpec.describe PleaseGPT::Api do
   describe 'Api' do
@@ -60,3 +64,5 @@ RSpec.describe PleaseGPT::Api do
     end
   end
 end
+
+# rubocop:enable Metrics/BlockLength
