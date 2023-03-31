@@ -1,4 +1,4 @@
-require_relative "pleasegpt/version"
+require_relative 'pleasegpt/version'
 require 'ruby/openai'
 require 'openai'
 require 'highline/import'
@@ -9,8 +9,8 @@ require 'dotenv'
 module PleaseGPT
   autoload :CLI, 'pleasegpt/cli'
 
-   # Error class for OpenAI API requests and response errors
-   class Error < StandardError
+  # Error class for OpenAI API requests and response errors
+  class Error < StandardError
     def self.check_response(response)
       if response['choices'].nil? || response['choices'].empty?
         raise PleaseGPT::Error, 'Request returned empty response'

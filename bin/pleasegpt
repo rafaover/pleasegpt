@@ -9,13 +9,13 @@ case ARGV[0]
 when 'load-key'
   PleaseGPT::Api.load_api_key
 when 'help'
-  puts <<-HELP
-PleaseGPT - A command-line tool for OpenAI's GPT-3 API
+  puts <<~HELP
+    PleaseGPT - A command-line tool for OpenAI's GPT-3 API
 
-Usage:
-  pleasegpt [input]           # Generate text based on input
-  pleasegpt load-key          # Save OpenAI API key
-  pleasegpt help              # Show this help message
+    Usage:
+      pleasegpt [input]           # Generate text based on input
+      pleasegpt load-key          # Save OpenAI API key
+      pleasegpt help              # Show this help message
   HELP
 else
   PleaseGPT::CLI.new.start(ARGV)
