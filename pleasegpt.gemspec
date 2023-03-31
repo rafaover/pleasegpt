@@ -13,10 +13,10 @@ Gem::Specification.new do |spec|
   spec.email         = "rafamsilva@gmail.com"
 
   spec.summary       = "A wrapper around the OpenAI API Chat Model"
-  spec.description = <<-EOF
+  spec.description = <<~DESC
     A Ruby gem that provides a wrapper around the OpenAI API.
     It allows you to generate natural language text based on a given prompt.
-  EOF
+  DESC
 
   spec.homepage      = "https://github.com/rafaover/pleasegpt"
   spec.license       = "MIT"

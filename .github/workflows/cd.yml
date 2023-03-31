@@ -1,7 +1,7 @@
 name: CD
 
 on:
-  # This ensures we only run CD after the CI workflow has completed on the main branch.
+  # This ensures we only run CD after the CI workflow has completed on the master branch.
   workflow_run:
     workflows: [CI]
     types: [completed]
