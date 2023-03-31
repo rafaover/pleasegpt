@@ -1,0 +1,33 @@
+PATH
+  remote: .
+  specs:
+    pleasegpt (0.1.0)
+      colorize (~> 0.8.1)
+      dotenv (~> 2.8, >= 2.8.1)
+      highline (~> 2.1)
+      openai (~> 0.3.0)
+      ruby-openai (~> 3.7)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    dotenv (2.8.1)
+    highline (2.1.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+    mini_mime (1.1.2)
+    multi_xml (0.6.0)
+    openai (0.3.0)
+    ruby-openai (3.7.0)
+      httparty (>= 0.18.1)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  pleasegpt!
+
+BUNDLED WITH
+   2.4.10
