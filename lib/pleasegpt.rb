@@ -1,9 +1,5 @@
 require_relative 'pleasegpt/version'
-require 'ruby/openai'
-require 'openai'
-require 'highline/import'
-require 'dotenv/load'
-require 'dotenv'
+require_relative 'pleasegpt/gems'
 
 # Main module for PleaseGPT gem
 module PleaseGPT
