@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 # rubocop:disable Style/StringLiterals
+
 require File.expand_path('lib/pleasegpt/version', File.dirname(__FILE__))
 
 Gem::Specification.new do |spec|
