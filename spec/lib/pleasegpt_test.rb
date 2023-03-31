@@ -2,20 +2,61 @@ require 'spec_helper'
 require 'pleasegpt'
 
 RSpec.describe PleaseGPT::Api do
-  describe '#generate_text' do
-    let(:input) { 'Some prompt for GPT' }
-    let(:response_text) { 'Generated text' }
+  describe 'Api' do
+    context 'when API key is valid' do
+      let(:key) { 'valid_key' }
 
-    before do
-      allow_any_instance_of(OpenAI::Client)
-        .to receive(:completions)
-        .and_return('choices' => [{ 'text' => response_text }])
+      before do
+        allow(PleaseGPT::Api).to receive(:ask).and_return(key)
+        allow(File).to receive(:write)
+        allow(File).to receive(:open)
+        allow(Dotenv).to receive(:load)
+      end
+
+      it 'saves the API key to the file' do
+        expect(PleaseGPT::Api).to receive(:save_api_key).with(key)
+        PleaseGPT::Api.load_api_key
+      end
+
+      it 'sets the OPENAI_API_KEY environment variable' do
+        expect(PleaseGPT::Api).to receive(:env_variable).with(key)
+        PleaseGPT::Api.load_api_key
+      end
     end
 
-    it 'returns a non-empty response' do
-      response = PleaseGPT::Api.generate_text(input)
-      expect(response).not_to be_empty
-      expect(response).to eq(response_text)
+    context 'when API key is empty' do
+      it 'does not save the API key to the file' do
+        allow(PleaseGPT::Api).to receive(:ask).and_return('')
+        expect { PleaseGPT::Api.load_api_key }.to output("API Key cannot be empty. Please try again.\n").to_stdout
+      end
+    end
+
+    describe '.generate_text' do
+      before do
+        allow(PleaseGPT::Api).to receive(:openai_client).and_return(client)
+        allow(PleaseGPT::Error).to receive(:check_response).and_return('output text')
+      end
+
+      let(:client) { double('client') }
+
+      it 'returns generated text' do
+        expect(client).to receive(:completions)
+        expect(PleaseGPT::Api.generate_text('prompt')).to eq('output text')
+      end
+    end
+
+    describe '.openai_client' do
+      let(:api_key) { 'key123' }
+      let(:client) { double('client') }
+
+      before do
+        ENV['OPENAI_API_KEY'] = api_key
+        allow(OpenAI::Client).to receive(:new).and_return(client)
+      end
+
+      it 'returns a new instance of OpenAI::Client' do
+        expect(PleaseGPT::Api.openai_client).to eq(client)
+      end
     end
   end
 end
