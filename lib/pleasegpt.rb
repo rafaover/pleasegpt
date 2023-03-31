@@ -1,3 +1,4 @@
+require_relative 'pleasegpt/version'
 require 'ruby/openai'
 require 'openai'
 require 'highline/import'
@@ -7,6 +8,19 @@ require 'dotenv'
 # Main module for PleaseGPT gem
 module PleaseGPT
   autoload :CLI, 'pleasegpt/cli'
+
+  # Error class for OpenAI API requests and response errors
+  class Error < StandardError
+    def self.check_response(response)
+      if response['choices'].nil? || response['choices'].empty?
+        raise PleaseGPT::Error, 'Request returned empty response'
+      elsif response['choices'][0]['text'].nil?
+        raise PleaseGPT::Error, 'Request returned nil text'
+      else
+        response['choices'][0]['text'].strip
+      end
+    end
+  end
 
   # API class for OpenAI API requests and responses
   module Api
@@ -58,19 +72,6 @@ module PleaseGPT
         }
       )
       Error.check_response(response)
-    end
-  end
-
-  # Error class for OpenAI API requests and response errors
-  class Error < StandardError
-    def self.check_response(response)
-      if response['choices'].nil? || response['choices'].empty?
-        raise PleaseGPT::Error, 'Request returned empty response'
-      elsif response['choices'][0]['text'].nil?
-        raise PleaseGPT::Error, 'Request returned nil text'
-      else
-        response['choices'][0]['text'].strip
-      end
     end
   end
 end
