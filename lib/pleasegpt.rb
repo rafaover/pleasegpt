@@ -51,7 +51,7 @@ module PleaseGPT
 
     def self.openai_client
       Dotenv.load(join_lib_dir_with_file)
-      raise 'OPENAI_API_KEY not set' unless ENV['OPENAI_API_KEY']
+      raise PleaseGPT::Error, 'OPENAI_API_KEY not set' unless ENV['OPENAI_API_KEY']
 
       OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
     end
