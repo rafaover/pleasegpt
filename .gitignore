@@ -1,1 +1,9 @@
 /lib/.openai
+
+.DS_Store
+doc
+pkg
+.rake_tasks
+*.gem
+Gemfile.lock
+.rspec_status
