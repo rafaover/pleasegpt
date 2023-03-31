@@ -5,7 +5,7 @@ on:
   workflow_run:
     workflows: [CI]
     types: [completed]
-    branches: [main]
+    branches: [master]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,7 +21,7 @@ jobs:
         uses: discourse/publish-rubygems-action@b89928239fc68d769527dd092b093b70c0e8a969
         env:
           # This is provided to GitHub Actions automatically – you do not need to add this secret.
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN_PLEASEGPT}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           # These are used when the CD workflow pushes new tags to your repository.
           # Using tags helps people using your gem easily see changes between versions.
           # To get this value, try: `git config --get user.email`
@@ -37,4 +37,4 @@ jobs:
         # We only create a release if the previous step has published a new version.
         if: ${{ steps.tag-and-push-gem.outputs.new_version == 'true' }}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN_PLEASEGPT }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

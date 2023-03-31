@@ -34,12 +34,11 @@ jobs:
       - name: Set up Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@eae47962baca661befdfd24e4d6c34ade04858f7
         with:
-          # This caches the gems that bundle installs so subsequent runs can be faster.
-          # It is what allows us to not run `gem install bundler` and `bundle install` in subsequent steps.
-          bundler-cache: true
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           ruby-version: ${{ matrix.ruby }}
       - name: Run tests
         run: bundle exec rspec
+
   rubocop:
     runs-on: ubuntu-latest
     name: Rubocop
