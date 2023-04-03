@@ -35,15 +35,14 @@ pleasegpt suggest <your-text>       ## Generate text by providing a list of poss
 
 ### In your code
 
-Once you have an API key, you can use the PleaseGPT::Api.generate_text method to generate text based on a prompt:
+Once you have an API key loaded in the environment, you can use the PleaseGPT::Api.generate_text method to generate text based on a prompt:
 
 ```
 require 'pleasegpt'
 
-api_key = 'your_api_key'
-prompt = 'Hello, world!'
+prompt = 'Explain Big O Notation for a 12 years old in less than 30 words'
 
-response = PleaseGPT::Api.generate_text(prompt, api_key: api_key)
+response = PleaseGPT::Api.generate_text(prompt)
 puts response
 ```
 
