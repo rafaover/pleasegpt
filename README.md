@@ -23,8 +23,6 @@ gem 'pleasegpt'
 
 ## Usage
 
-To use PleaseGPT, you will need an API key from OpenAI. You can sign up for a free trial at https://platform.openai.com/signup/.
-
 ### If you at the command-line (no need to use the <> when writing prompt). If you gonna use special character in your input, use "your-input". 
 
 ```
