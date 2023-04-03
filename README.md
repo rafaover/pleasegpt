@@ -5,6 +5,10 @@ PleaseGPT is a Ruby gem that provides a simple wrapper around the OpenAI GPT-3 A
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/rafaover/pleasegpt/ci.yml?style=for-the-badge)
 ![Gem](https://img.shields.io/gem/v/pleasegpt?style=for-the-badge)
 
+## Requirements
+
+A OpenAi API Key. Just go here, signup and create your key: https://platform.openai.com/account/api-keys.
+
 ## Installation
 
 To use PleaseGPT in your Ruby project, you can install it via Rubygems:
