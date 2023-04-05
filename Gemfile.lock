@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pleasegpt (0.1.0)
+    pleasegpt (0.2.0)
       colorize (~> 0.8.1)
       dotenv (~> 2.8, >= 2.8.1)
       highline (~> 2.1)
