@@ -73,6 +73,20 @@ module PleaseGPT
       )
       Error.check_response(response)
     end
+
+    def self.generate_command(input)
+      response = openai_client.completions(
+        parameters: {
+          model: 'text-davinci-003',
+          prompt: input,
+          max_tokens: 20,
+          temperature: 0.5,
+          n: 1,
+          stop: '\n'
+        }
+      )
+      Error.check_response(response)
+    end
   end
 end
 

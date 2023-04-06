@@ -10,12 +10,14 @@ when 'load-key'
   PleaseGPT::Api.load_api_key
 when 'help'
   puts <<~HELP
-    PleaseGPT - A command-line tool for OpenAI's GPT-3 API
+    PleaseGPT - A command-line tool for OpenAI's GPT-3 API.
+    Using special characters in your command is not supported. In this case, please use double quotes.
 
     Usage:
-      pleasegpt [input]           # Generate text based on input
-      pleasegpt load-key          # Save OpenAI API key
-      pleasegpt help              # Show this help message
+      pleasegpt "your request"      # Generate text based on your request
+      pleasegpt -c "your request"   # Generate a command based on your request, useful for shell or coding commands
+      pleasegpt load-key            # Save OpenAI API key
+      pleasegpt help                # Show this help message
   HELP
 else
   PleaseGPT::CLI.new.start(ARGV)

@@ -9,6 +9,9 @@ module PleaseGPT
     def start(args)
       if args.empty?
         puts '>>> Please enter a valid command <<<'
+      elsif args[0] == '-c'
+        input = args[1..-1].join(' ')
+        puts Api.generate_command(input).to_s.colorize(:green)
       else
         input = args.join(' ')
         puts Api.generate_text(input).to_s.colorize(:green)
