@@ -5,6 +5,8 @@
 # one by one as the offenses are removed from the code base.
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
+# bundle install
+# bundle exec rubocop -a
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle, Include.
@@ -12,4 +14,4 @@
 # Include: **/Gemfile, **/gems.rb, **/Gemfile.lock, **/gems.locked
 Bundler/GemFilename:
   Exclude:
-    - 'lib/pleasegpt/gems.rb'
+    - "lib/pleasegpt/gems.rb"
