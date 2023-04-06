@@ -79,7 +79,7 @@ module PleaseGPT
         parameters: {
           model: 'text-davinci-003',
           prompt: input,
-          max_tokens: 20,
+          max_tokens: 100,
           temperature: 0.5,
           n: 1,
           stop: '\n'
