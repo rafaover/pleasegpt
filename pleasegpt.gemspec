@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir.glob("{bin,lib,spec}/**/*")
   spec.executables   = ["pleasegpt"]
   spec.require_paths = ["lib"]
-  spec.post_install_message = "Thanks for installing! Please run `pleasegpt load-api` to configure the gem."
+  spec.post_install_message = "Thanks for installing! Please run `pleasegpt load-key` to configure the gem."
 
   spec.add_dependency 'colorize', '~> 0.8.1'
   spec.add_dependency 'dotenv', '~> 2.8', '>= 2.8.1'
