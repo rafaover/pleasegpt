@@ -2,6 +2,13 @@
 
 PleaseGPT is a Ruby gem that provides a simple wrapper around the OpenAI GPT-3 API. It allows you to generate natural language text based on a given prompt.
 
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/rafaover/pleasegpt/ci.yml?style=for-the-badge)
+![Gem](https://img.shields.io/gem/v/pleasegpt?style=for-the-badge)
+
+## Requirements
+
+A OpenAi API Key. Just go here, signup and create your key: <https://platform.openai.com/account/api-keys>.
+
 ## Installation
 
 To use PleaseGPT in your Ruby project, you can install it via Rubygems:
@@ -16,16 +23,15 @@ gem 'pleasegpt'
 
 ## Usage
 
-To use PleaseGPT, you will need an API key from OpenAI. You can sign up for a free trial at <https://platform.openai.com/signup/>.
-
-### If you at the command-line (no need to use the <> when writing prompt). If you gonna use special character in your input, use "your-input"
+### If you gonna use special character in your input, use "your-input"
 
 ```shell
 pleasegpt help                      ## Show you all the commands available
-pleasegpt load-key                  ## To save your OpenAI key in a Env file. (mandatory action)
-pleasegpt <any text or question>    ## Will reply your request (no need to use <>)
-pleasegpt autocomplete <your-text>  ## Generate text by providing a partial prompt
-pleasegpt suggest <your-text>       ## Generate text by providing a list of possible next words or phrases.
+pleasegpt load-key                  ## To save your OpenAI key in a Env file. (Required)
+pleasegpt "any text or question"    ## Will reply your request
+pleasegpt -c "your question"        ## When requesting a specific shell command, will reply only the command.
+pleasegpt autocomplete "your-text"  ## Generate text by providing a partial prompt
+pleasegpt suggest "your-text"       ## Generate text by providing a list of possible next words or phrases.
 ```
 
 ### In your code
