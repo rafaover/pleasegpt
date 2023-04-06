@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/MethodLength
-
 require_relative 'pleasegpt/version'
 require_relative 'pleasegpt/gems'
+require_relative 'pleasegpt/openai_api'
 
 # Main module for PleaseGPT gem
 module PleaseGPT
@@ -22,7 +21,7 @@ module PleaseGPT
     end
   end
 
-  # API class for OpenAI API requests and responses
+  # Main module for Dirs and loading/Saving API key
   module Api
     def self.load_api_key
       key = ask('Please paste your OpenAI API key:  ')
@@ -53,41 +52,12 @@ module PleaseGPT
       end
     end
 
-    def self.openai_client
-      Dotenv.load(join_lib_dir_with_file)
-      raise PleaseGPT::Error, 'OPENAI_API_KEY not set' unless ENV['OPENAI_API_KEY']
-
-      OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
-    end
-
     def self.generate_text(input)
-      response = openai_client.completions(
-        parameters: {
-          model: 'text-davinci-003',
-          prompt: input,
-          max_tokens: 300,
-          temperature: 0.5,
-          n: 1,
-          stop: '.'
-        }
-      )
-      Error.check_response(response)
+      OpenaiClient.openai_response(input, 300, 0.5, 1, '.')
     end
 
     def self.generate_command(input)
-      response = openai_client.completions(
-        parameters: {
-          model: 'text-davinci-003',
-          prompt: input,
-          max_tokens: 100,
-          temperature: 0.5,
-          n: 1,
-          stop: '\n'
-        }
-      )
-      Error.check_response(response)
+      OpenaiClient.openai_response(input, 100, 0.5, 1, '\n')
     end
   end
 end
-
-# rubocop:enable Metrics/MethodLength
