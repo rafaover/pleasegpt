@@ -26,12 +26,12 @@ gem 'pleasegpt'
 ### If you gonna use special character in your input, use "your-input"
 
 ```shell
-pleasegpt help                      ## Show you all the commands available
-pleasegpt load-key                  ## To save your OpenAI key in a Env file. (Required)
-pleasegpt "any text or question"    ## Will reply your request
-pleasegpt -c "your question"        ## When requesting a specific shell command, will reply only the command.
-pleasegpt autocomplete "your-text"  ## Generate text by providing a partial prompt
-pleasegpt suggest "your-text"       ## Generate text by providing a list of possible next words or phrases.
+pleasegpt help                        # Show all commands
+pleasegpt load-key                    # Save OpenAI key in a Env file. (Required)
+pleasegpt "any text or question"      # Reply your request
+pleasegpt -c "your question"          # When requesting a command, will reply only the command.
+pleasegpt autocomplete "your-text"    # Complete your partial request
+pleasegpt suggest "your-text"         # Suggest a new text based on your request
 ```
 
 ### In your code
