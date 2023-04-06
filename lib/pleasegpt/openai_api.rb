@@ -7,14 +7,14 @@ require 'openai'
 
 # Main module for OpenAI Client
 module OpenaiClient
-  def self.openai_response(prompt, max_tokens, temperature, n, stop)
+  def self.openai_response(prompt, max_tokens, temperature, responses_qty, stop)
     response = openai_client_new.completions(
       parameters: {
         model: 'text-davinci-003',
         prompt: prompt,
         max_tokens: max_tokens,
         temperature: temperature,
-        n: n,
+        n: responses_qty,
         stop: stop
       }
     )
