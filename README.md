@@ -11,7 +11,7 @@ A OpenAi API Key. Just go here, signup and create your key: <https://platform.op
 
 ## Installation
 
-To use PleaseGPT in your Ruby project, you can install it via Rubygems:
+To use PleaseGPT in your Ruby project, you can install it via Rubygems to use in your terminal:
 
 ```shell
 gem install pleasegpt
