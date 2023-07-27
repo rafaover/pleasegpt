@@ -49,5 +49,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: head
+      - name: Install rubocop
+        run: gem install rubocop
       - name: Run style checks
         run: bundle exec rubocop
