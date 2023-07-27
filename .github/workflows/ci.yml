@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         ruby:
-          - 2.7
+          - 2.6.0
           # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
           - "3.0"
           - 3.1
