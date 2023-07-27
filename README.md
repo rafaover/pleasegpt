@@ -12,7 +12,7 @@ Your key will be stored at `lib/.openai`
 
 ## Installation
 
-To use PleaseGPT in your Ruby project, you can install it via Rubygems:
+To use PleaseGPT in your Ruby project, you can install it via Rubygems to use in your terminal:
 
 ```shell
 gem install pleasegpt
