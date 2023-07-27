@@ -22,13 +22,8 @@ jobs:
         env:
           # This is provided to GitHub Actions automatically – you do not need to add this secret.
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          # These are used when the CD workflow pushes new tags to your repository.
-          # Using tags helps people using your gem easily see changes between versions.
-          # To get this value, try: `git config --get user.email`
           GIT_EMAIL: rafamsilva@gmail.com
-          # To get this value, try: `git config --get user.name`
           GIT_NAME: Rafael Moreira
-          # Get this from rubygems.org and add it as a secret to your repository.
           RUBYGEMS_API_KEY: ${{secrets.RUBYGEM_API_PUSH}}
       - name: Create GitHub Release
         # This creates a new release at https://github.com/rubyatscale/alexevanczuk-example-gem/releases,
