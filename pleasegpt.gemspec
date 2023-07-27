@@ -7,7 +7,7 @@ require File.expand_path('lib/pleasegpt/version', File.dirname(__FILE__))
 Gem::Specification.new do |spec|
   spec.name          = "pleasegpt"
   spec.version       = Pleasegpt::VERSION
-  spec.required_ruby_version = '>= 2.6.0'
+  spec.required_ruby_version = '>=2.7'
 
   spec.authors       = "Rafael Moreira"
   spec.email         = "rafamsilva@gmail.com"
