@@ -8,6 +8,7 @@ PleaseGPT is a Ruby gem that provides a simple wrapper around the OpenAI GPT-3 A
 ## Requirements
 
 A OpenAi API Key. Just go here, signup and create your key: <https://platform.openai.com/account/api-keys>.
+Your key will be stored at `lib/.openai`
 
 ## Installation
 
@@ -43,7 +44,8 @@ require 'pleasegpt'
 
 prompt = 'Explain Big O Notation for a 12 years old in less than 30 words'
 
-response = PleaseGPT::Api.generate_text(prompt)
+response = PleaseGPT::Api.generate_text(prompt)  # To generate text responses in medium range.
+response = PleaseGPT::Api.generate_command(prompt)  # To generate short responses, as a command.
 puts response
 ```
 
