@@ -48,8 +48,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          bundler-cache: true
           ruby-version: head
-      - name: GEM bundle install
-        run: bundle install
       - name: Run style checks
         run: bundle exec rubocop
